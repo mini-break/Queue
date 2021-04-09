@@ -11,7 +11,7 @@ import java.util.Properties;
  * <p> Description：
  * 先在集群中创建一个topic：kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor 1 --partitions 1 --topic first
  * 然后在集群中开一个消费者：kafka-console-consumer.sh --zookeeper localhost:2181 --from-beginning --topic first
- *
+ * <p>
  * 创建生产者（新API）
  * </p>
  */
@@ -21,17 +21,17 @@ public class NewProducer {
 
         Properties properties = new Properties();
         // Kafka服务端的主机名和端口号
-        properties.put("bootstrap.servers", "192.168.200.111:9092");
+        properties.put("bootstrap.servers", "47.112.118.204:8092");
         // 等待所有副本节点的应答
         properties.put("acks", "all");
         // 消息发送最大尝试次数
         properties.put("retries", 0);
-        // 一批消息处理大小
-        properties.put("batch.size", 16384);
-        // 请求延时
+        // 一批消息处理大小 默认16k
+        properties.put("batch.size", 16384);// 16k
+        // 请求延时 1ms
         properties.put("linger.ms", 1);
-        // 发送缓存区内存大小
-        properties.put("buffer.memory",33554432);
+        // 发送缓存区内存大小 默认32M
+        properties.put("buffer.memory", 33554432);// 32M
         // key序列化
         properties.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         // value序列化
@@ -39,7 +39,7 @@ public class NewProducer {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
         for (int i = 0; i < 50; i++) {
-            producer.send(new ProducerRecord<String, String>("first", Integer.toString(i), "HelloWorld-" +i));
+            producer.send(new ProducerRecord<String, String>("first", Integer.toString(i), "HelloWorld-" + i));
         }
 
         producer.close();

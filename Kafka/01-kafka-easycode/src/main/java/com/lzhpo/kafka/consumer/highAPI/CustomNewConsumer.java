@@ -22,7 +22,7 @@ public class CustomNewConsumer {
 
         Properties props = new Properties();
         // 定义kakfa 服务的地址，不需要将所有broker指定上
-        props.put("bootstrap.servers", "192.168.200.111:9092");
+        props.put("bootstrap.servers", "47.112.118.204:8092");
         // 制定consumer group
         props.put("group.id", "test");
         // 是否自动确认offset

@@ -19,7 +19,7 @@ public class CallBackProducer {
     public static void main(String[] args) {
         Properties properties = new Properties();
         // Kafka服务端的主机名和端口号
-        properties.put("bootstrap.servers", "192.168.200.111:9092");
+        properties.put("bootstrap.servers", "47.112.118.204:8092");
         // 等待所有副本节点的应答
         properties.put("acks", "all");
         // 消息发送最大尝试次数
